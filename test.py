@@ -1,6 +1,7 @@
-import pytest
-import io
-import cyk
+import pytest, io
+from main import ReadInput
+from cyk import CockeYoungerKasami
+from grammar import Grammar
 
 TEST_DATA = [
     
@@ -46,9 +47,9 @@ i+i)
 @pytest.mark.parametrize("input_str, expected", TEST_DATA)
 def test_cyk_algo(monkeypatch, input_str, expected):
   monkeypatch.setattr('sys.stdin', io.StringIO(input_str))
-  (N, Sigma, P, S), words = cyk.ReadInput()
-  g = cyk.Grammar(N, Sigma, P, S)
-  algo = cyk.CYK()
+  (N, Sigma, P, S), words = ReadInput()
+  g = Grammar(N, Sigma, P, S)
+  algo = CockeYoungerKasami()
   algo.fit(g)
   results = []
   for w in words:
@@ -56,3 +57,5 @@ def test_cyk_algo(monkeypatch, input_str, expected):
     results.append(res)
 
   assert results == expected
+
+###

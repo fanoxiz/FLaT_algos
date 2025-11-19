@@ -13,7 +13,7 @@ pip install pytest
 Программа считывает данные из stdin и выводит результат в stdout. Запуск:
 
 ```bash
-python3 cyk.py
+python3 main.py
 ```
 
 ## 3. Запуск автоматизированных тестов на pytest
