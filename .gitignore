@@ -1,2 +1,4 @@
 conditions.md
 temp.py
+.pytest_cache/
+__pycache__/

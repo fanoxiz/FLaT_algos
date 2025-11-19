@@ -259,21 +259,3 @@ class CYK:
     return self.g_cnf.S in dp[0][n - 1]
 
 ###
-
-def main():
-  try:
-    (N, Sigma, P, S), words = ReadInput()
-    g = Grammar(N, Sigma, P, S)
-    algo = CYK()
-    algo.fit(g)
-    for w in words:
-      if algo.predict(w):
-        print("Yes")
-      else:
-        print("No")
-  except Exception as e:
-    raise e
-
-if __name__ == "__main__":
-  main()
-
