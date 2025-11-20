@@ -13,7 +13,11 @@ pip install pytest
 Программа считывает данные из stdin и выводит результат в stdout. Запуск:
 
 ```bash
-python3 main.py
+# Тестирование CYK
+python3 main.py cyk
+
+# Тестирование Эрли
+python3 main.py earley
 ```
 
 ## 3. Запуск автоматизированных тестов на pytest
@@ -21,6 +25,13 @@ python3 main.py
 Есть готовые тесты, 2 грамматики, и по 5 слов для проверки на каждую. Запуск:
 
 ```bash
+# Только CYK
+pytest -v test.py -k cyk
+
+# Только Эрли
+pytest -v test.py -k earley
+
+# Оба алгоритма
 pytest -v test.py
 ```
 

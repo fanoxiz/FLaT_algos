@@ -1,4 +1,6 @@
+import sys
 from cyk import CockeYoungerKasami
+from earley import Earley
 from grammar import Grammar
 
 def ReadInput():
@@ -18,10 +20,23 @@ def ReadInput():
   return ((N, Sigma, P, S), words)
 
 def main():
+  if len(sys.argv) == 2:
+    algo_mode = sys.argv[1].lower()
+  else:
+    exit(-1)
+
+  if algo_mode == "earley":
+    AlgoClass = Earley
+  elif algo_mode == "cyk":
+    AlgoClass = CockeYoungerKasami
+  else:
+    print("Неверное название алгоритма")
+    exit(-1)
+
   try:
     (N, Sigma, P, S), words = ReadInput()
     g = Grammar(N, Sigma, P, S)
-    algo = CockeYoungerKasami()
+    algo = AlgoClass()
     algo.fit(g)
     for w in words:
       if algo.predict(w):

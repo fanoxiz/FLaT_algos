@@ -8,20 +8,20 @@ class CockeYoungerKasami:
     self.binary_rules = {}
     self.term_rules = {}
 
-  def fit(self, g: Grammar):
+  def fit(self, G: Grammar):
     nullable = set()
     while True:
       changed = False
-      for head, body in g.P:
+      for head, body in G.P:
         if len(body) == 0 or all(sym in nullable for sym in body):
           if head not in nullable:
             nullable.add(head)
             changed = True
       if not changed:
         break
-    self.s_nullable = (g.S in nullable)
+    self.s_nullable = (G.S in nullable)
 
-    self.g_cnf = ToCNF(g)
+    self.g_cnf = ToCNF(G)
 
     self.binary_rules = {}
     self.term_rules = {}
